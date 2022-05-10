@@ -477,7 +477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6129577982774582255, guid: 8c6b874f2273bf7439c29cc2e6ba121f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6129577982774582255, guid: 8c6b874f2273bf7439c29cc2e6ba121f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2985,7 +2985,7 @@ MonoBehaviour:
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: 1f25ddc479d01544487fe3edd0115a6a, type: 3}
-  m_InferenceDevice: 1
+  m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
   TeamId: 0
@@ -3247,6 +3247,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 638047826}
     m_Modifications:
+    - target: {fileID: 6129577982774582248, guid: 8c6b874f2273bf7439c29cc2e6ba121f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6129577982774582254, guid: 8c6b874f2273bf7439c29cc2e6ba121f, type: 3}
       propertyPath: m_Name
       value: Lava
@@ -3256,8 +3260,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6129577982774582255, guid: 8c6b874f2273bf7439c29cc2e6ba121f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129577982774582255, guid: 8c6b874f2273bf7439c29cc2e6ba121f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.01
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 6129577982774582255, guid: 8c6b874f2273bf7439c29cc2e6ba121f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3265,7 +3273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6129577982774582255, guid: 8c6b874f2273bf7439c29cc2e6ba121f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.54
+      value: -8.89
       objectReference: {fileID: 0}
     - target: {fileID: 6129577982774582255, guid: 8c6b874f2273bf7439c29cc2e6ba121f, type: 3}
       propertyPath: m_LocalRotation.w

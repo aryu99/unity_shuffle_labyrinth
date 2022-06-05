@@ -36,18 +36,26 @@ public class agentController : Agent
         // location, the second is the task's target location.
         taskDescriptions = new Dictionary<int, (Vector3, Vector3)>();
         taskDescriptions.Add(-1, (new Vector3(2f, 0.5f, -2f), new Vector3(1f, 0.5f, -19.5f)));
-        taskDescriptions.Add(0, (new Vector3(2f, 0.5f, -2f), new Vector3(4f, 0.5f, -6.5f)));
-        taskDescriptions.Add(1, (new Vector3(2f, 0.5f, -2f), new Vector3(6.5f, 0.5f, -3f)));
-        taskDescriptions.Add(2, (new Vector3(6.5f, 0.5f, -3f), new Vector3(10f, 0.5f, -6.5f)));
-        taskDescriptions.Add(3, (new Vector3(6.5f, 0.5f, -3f), new Vector3(16f, 0.5f, -6.5f)));
-        taskDescriptions.Add(4, (new Vector3(4f, 0.5f, -6.5f), new Vector3(6f, 0.5f, -12f)));
-        taskDescriptions.Add(5, (new Vector3(6f, 0.5f, -12f), new Vector3(4f, 0.5f, -16.5f)));
-        taskDescriptions.Add(6, (new Vector3(10f, 0.5f, -6.5f), new Vector3(12f, 0.5f, -15f)));
-        taskDescriptions.Add(7, (new Vector3(12f, 0.5f, -15f), new Vector3(10f, 0.5f, -6.5f)));
-        taskDescriptions.Add(8, (new Vector3(16f, 0.5f, -6.5f), new Vector3(17f, 0.5f, -16.5f)));
-        taskDescriptions.Add(9, (new Vector3(4f, 0.5f, -16.5f), new Vector3(1f, 0.5f, -19f)));
-        taskDescriptions.Add(10, (new Vector3(17f, 0.5f, -16.5f), new Vector3(10f, 0.5f, -18.5f)));
-        taskDescriptions.Add(11, (new Vector3(10f, 0.5f, -18.5f), new Vector3(1f, 0.5f, -19.5f)));
+        taskDescriptions.Add(0, (new Vector3(1.11f, 0.5f, -1.08f), new Vector3(5.97f, 0.5f, -3.06f)));
+        taskDescriptions.Add(1, (new Vector3(1.11f, 0.5f, -1.08f), new Vector3(2.71f, 0.5f, -5.9f)));
+        taskDescriptions.Add(2, (new Vector3(5.97f, 0.5f, -3.06f), new Vector3(17.33f, 0.5f, -6.06f)));
+        taskDescriptions.Add(3, (new Vector3(5.97f, 0.5f, -8.12f), new Vector3(2.71f, 0.5f, -5.9f)));
+        taskDescriptions.Add(4, (new Vector3(2.71f, 0.5f, -5.9f), new Vector3(2.71f, 0.5f, -13.95f)));
+        taskDescriptions.Add(5, (new Vector3(2.71f, 0.5f, -13.95f), new Vector3(2.71f, 0.5f, -5.9f)));
+        taskDescriptions.Add(6, (new Vector3(5.97f, 0.5f, -8.12f), new Vector3(2.71f, 0.5f, -13.95f)));
+        taskDescriptions.Add(7, (new Vector3(2.71f, 0.5f, -13.95f), new Vector3(5.97f, 0.5f, -8.12f)));
+        taskDescriptions.Add(8, (new Vector3(2.71f, 0.5f, -13.95f), new Vector3(14.12f, 0.5f, -11.86f)));
+        taskDescriptions.Add(9, (new Vector3(14.12f, 0.5f, -11.86f), new Vector3(2.71f, 0.5f, -13.95f)));
+        taskDescriptions.Add(10, (new Vector3(17.33f, 0.5f, -13.91f), new Vector3(17.33f, 0.5f, -6.06f)));
+        taskDescriptions.Add(11, (new Vector3(17.33f, 0.5f, -6.06f), new Vector3(17.33f, 0.5f, -13.91f)));
+        taskDescriptions.Add(12, (new Vector3(17.33f, 0.5f, -6.06f), new Vector3(14.12f, 0.5f, -11.86f)));
+        taskDescriptions.Add(13, (new Vector3(14.12f, 0.5f, -11.86f), new Vector3(17.33f, 0.5f, -6.06f)));
+        taskDescriptions.Add(14, (new Vector3(17.33f, 0.5f, -6.06f), new Vector3(5.97f, 0.5f, -8.12f)));
+        taskDescriptions.Add(15, (new Vector3(5.97f, 0.5f, -8.12f), new Vector3(17.33f, 0.5f, -6.06f)));
+        taskDescriptions.Add(16, (new Vector3(14.12f, 0.5f, -11.86f), new Vector3(17.33f, 0.5f, -13.91f)));
+        taskDescriptions.Add(17, (new Vector3(17.33f, 0.5f, -13.91f), new Vector3(5.97f, 0.5f, -16.77f)));
+        taskDescriptions.Add(18, (new Vector3(2.71f, 0.5f, -13.95f), new Vector3(1.0f, 0.5f, -18.5f)));
+        taskDescriptions.Add(19, (new Vector3(5.97f, 0.5f, -16.77f), new Vector3(1.0f, 0.5f, -18.5f)));
 
         // Set the current task to the value representing the overall task
         currentTask = -1;

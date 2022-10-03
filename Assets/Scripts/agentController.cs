@@ -21,6 +21,8 @@ public class agentController : Agent
     private Vector3 initLocation;
     private Vector3 targetLocation;
     private Vector3 subTaskTargetLocation;
+    private Vector3 globalInitLocation;
+    private Vector3 subTaskInitLocation;
     public int room_ID;
 
     private Dictionary<int, (Vector3, Vector3)> taskDescriptions;
@@ -90,7 +92,7 @@ public class agentController : Agent
 
         // Room #3 (BL)
         else if(room_ID == 3){
-        taskDescriptions.Add(-1, (new Vector3(1.11f, 0.5f, -1.08f - 20f), new Vector3(1f, 0.5f, -18.5f - 20f)));
+        taskDescriptions.Add(-1, (new Vector3(1.11f, 0.5f, -1.08f - 20f), new Vector3(19f, 0.5f, -18.5f - 20f)));
         taskDescriptions.Add(0, (new Vector3(1.11f, 0.5f, -1.08f - 20f), new Vector3(5.97f, 0.5f, -3.06f - 20f)));
         taskDescriptions.Add(1, (new Vector3(1.11f, 0.5f, -1.08f - 20f), new Vector3(2.71f, 0.5f, -5.9f - 20f)));
         taskDescriptions.Add(2, (new Vector3(5.97f, 0.5f, -3.06f - 20f), new Vector3(17.33f, 0.5f, -6.06f - 20f)));
@@ -99,7 +101,7 @@ public class agentController : Agent
         taskDescriptions.Add(5, (new Vector3(2.71f, 0.5f, -13.95f - 20f), new Vector3(2.71f, 0.5f, -5.9f - 20f)));
         taskDescriptions.Add(6, (new Vector3(5.97f, 0.5f, -8.12f - 20f), new Vector3(2.71f, 0.5f, -13.95f - 20f)));
         taskDescriptions.Add(7, (new Vector3(2.71f, 0.5f, -13.95f - 20f), new Vector3(5.97f, 0.5f, -8.12f - 20f)));
-        taskDescriptions.Add(8, (new Vector3(2.71f, 0.5f, -13.95f - 20f), new Vector3(14.12f, 0.5f, -11.86f - 20f)));
+        taskDescriptions.Add(8, (new Vector3(2.71f, 0.5f, -13.95f - 20f), new Vector3(14.12f, 0.5f, -31.22f)));
         taskDescriptions.Add(9, (new Vector3(14.12f, 0.5f, -11.86f - 20f), new Vector3(2.71f, 0.5f, -13.95f - 20f)));
         taskDescriptions.Add(10, (new Vector3(17.33f, 0.5f, -13.91f - 20f), new Vector3(17.33f, 0.5f, -6.06f - 20f)));
         taskDescriptions.Add(11, (new Vector3(17.33f, 0.5f, -6.06f - 20f), new Vector3(17.33f, 0.5f, -13.91f - 20f)));
@@ -107,8 +109,8 @@ public class agentController : Agent
         taskDescriptions.Add(13, (new Vector3(14.12f, 0.5f, -11.86f - 20f), new Vector3(17.33f, 0.5f, -6.06f - 20f)));
         taskDescriptions.Add(14, (new Vector3(17.33f, 0.5f, -6.06f - 20f), new Vector3(5.97f, 0.5f, -8.12f - 20f)));
         taskDescriptions.Add(15, (new Vector3(5.97f, 0.5f, -8.12f - 20f), new Vector3(17.33f, 0.5f, -6.06f - 20f)));
-        taskDescriptions.Add(16, (new Vector3(14.12f, 0.5f, -11.86f - 20f), new Vector3(17.33f, 0.5f, -13.91f - 20f)));
-        taskDescriptions.Add(17, (new Vector3(2.71f, 0.5f, -13.95f - 20f), new Vector3(14.2f, 0.5f, -36.3f)));
+        taskDescriptions.Add(16, (new Vector3(14.12f, 0.5f, -31.22f), new Vector3(17.33f, 0.5f, -13.91f - 20f)));
+        taskDescriptions.Add(17, (new Vector3(2.71f, 0.5f, -13.57f - 20f), new Vector3(14.2f, 0.5f, -36.3f)));
         taskDescriptions.Add(18, (new Vector3(17.3f, 0.5f, -33.5f), new Vector3(19.0f, 0.5f, -38.0f)));
         taskDescriptions.Add(19, (new Vector3(14.2f, 0.5f, -36.3f), new Vector3(19.0f, 0.5f, -38.0f)));
         }        
@@ -192,18 +194,39 @@ public class agentController : Agent
     }
 
     public override void CollectObservations(VectorSensor sensor)
-    {
-        sensor.AddObservation(initLocation - transform.position);
-        sensor.AddObservation(subTaskTargetLocation - initLocation);
+    {   //globalInitLocation = new Vector3(1.11f, 0.5f, -1.08f);
+        // globalInitLocation = new Vector3(1.11f + 20f, 0.5f, -1.08f);0
+        // globalInitLocation = new Vector3(1.11f, 0.5f, -1.08f - 20f);
+        // globalInitLocation = new Vector3(1.11f + 20f, 0.5f, -1.08f - 20f);
+        if (currentSubTask == 18 && (room_ID == 4 || room_ID == 3))
+        {
+            sensor.AddObservation(transform.position - subTaskInitLocation);
+            sensor.AddObservation(subTaskTargetLocation - subTaskInitLocation);
+            sensor.AddObservation(-rb.velocity.x);
+        }
+        else
+        {
+            sensor.AddObservation(subTaskInitLocation - transform.position);
+            sensor.AddObservation(subTaskInitLocation - subTaskTargetLocation);
+            sensor.AddObservation(rb.velocity.x);
+        }
         // sensor.AddObservation(targetTransform.position);
-        sensor.AddObservation(rb.velocity.x);
         sensor.AddObservation(rb.velocity.z);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
-    {
+    {      
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
+
+        if (currentSubTask == 18 && (room_ID == 4 || room_ID == 3))
+        {
+            rb.AddForce(new Vector3(-moveX, 0, moveZ) * moveSpeed);
+        }
+        else
+        {
+            rb.AddForce(new Vector3(moveX, 0, moveZ) * moveSpeed);
+        }
         rb.AddForce(new Vector3(moveX, 0, moveZ) * moveSpeed);
 
         // For mirrored environments
@@ -252,7 +275,7 @@ public class agentController : Agent
 
     public void SetCurrentSubTask(int currentSubTask)
     {
-        (_, subTaskTargetLocation) = taskDescriptions[currentSubTask];
+        (subTaskInitLocation, subTaskTargetLocation) = taskDescriptions[currentSubTask];
     }
 
     // Defining a basic heuristic for the agent when not learning
